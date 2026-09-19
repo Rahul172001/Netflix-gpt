@@ -7,8 +7,6 @@ const Login = ()=>{
     const email = useRef(null)
     const password = useRef(null)
     const validationCheck = ()=>{
-        // console.log("em",email.current.value)
-        // console.log("pwd",password.current.value)
         const message = CheckValidate(email?.current?.value,password?.current?.value)
         setError(message)
     }
