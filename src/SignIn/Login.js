@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { CheckValidate } from "../utils/Validate"
 
 const Login = ()=>{
@@ -6,6 +6,9 @@ const Login = ()=>{
     const [error,setError] = useState(null)
     const email = useRef(null)
     const password = useRef(null)
+    useEffect(()=>{
+        email.current.focus()
+    },[])
     const validationCheck = ()=>{
         const message = CheckValidate(email?.current?.value,password?.current?.value)
         setError(message)
@@ -24,7 +27,6 @@ const Login = ()=>{
             <input ref={password} className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Password" />
             {!signIn &&
             <input className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Re-Enter Password" />}
-            {signIn}
             <p className="text-red-500">{error}</p>
             <button onClick={validationCheck} className="w-full p-2 my-2 bg-red-700 rounded-lg">{signIn?"SignIn":"SignUp"}</button>
             <span>{signIn ?"New User? Then " :"Already Singed up? Then " }<span className="cursor-pointer" onClick={()=>setSignIn(!signIn)}>{signIn ? " SignUp" : " SignIn"}</span></span>
