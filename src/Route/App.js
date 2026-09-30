@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from './Applayout';
+import { Provider } from 'react-redux';
 
 const appRouter = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ const appRouter = createBrowserRouter([
   }
 ])
 function App() {
-  return (
+  return ( 
     <RouterProvider router={appRouter}>
       <AppLayout />
     </RouterProvider>
