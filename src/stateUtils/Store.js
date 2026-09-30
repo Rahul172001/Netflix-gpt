@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./UserSlice"
 
-const appRouter = configureStore({
+ export const Store = configureStore({
     reducer:{
         user : userReducer
     }
 })
-
-export default appRouter
