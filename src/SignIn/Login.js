@@ -13,6 +13,7 @@ const Login = ()=>{
     const email = useRef(null)
     const password = useRef(null)
     const name = useRef(null)
+    console.log("n",name)
     const dispatch = useDispatch()
     useEffect(()=>{
         email.current.focus()
@@ -37,9 +38,8 @@ const Login = ()=>{
             navigate("/home")
             }).catch((error) => {
             // An error occurred
-            setError(error)
+            console.log(error)
             });
-            navigate("/home")
             })
             .catch((error) => {
             const errorCode = error.code;
@@ -51,7 +51,8 @@ const Login = ()=>{
             signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user)
+                const {uid,email,name,photoURL} = user
+                dispatch(addUser({uid,email,name,photoURL}))
                 navigate("/home")
             })
             .catch((error) => {
@@ -68,7 +69,7 @@ const Login = ()=>{
         <form onSubmit={(e)=>e.stopPropagation()} className=" w-3/12 absolute p-12 my-36 mx-auto left-0 right-0 bg-black text-white opacity-80">
             {signIn ? <h1 className="font-bold text-3xl p-2">SignIn</h1> : <h1 className="font-bold text-3xl p-2">SignUp</h1> }
             {!signIn && <>
-            <input className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Name" />
+            <input ref={name} className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Name" />
             <input className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Mobile Number" />
             </>}
             <input ref={email} className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Email Id" />

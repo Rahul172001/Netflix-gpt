@@ -24,6 +24,7 @@ const Header = ()=>{
             </div>
             {user && <div className="m-6 max-w-12">
             <img src={user?.photoURL} />
+            <p>{user?.displayName}</p>
             <button onClick={handleSignOut}>SignOut</button>
             </div>}
             
