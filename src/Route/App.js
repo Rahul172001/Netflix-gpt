@@ -4,6 +4,8 @@ import Header from '../Header/Header';
 import Login from '../SignIn/Login';
 import Home from '../Body/Home';
 import Error from '../Body/Error';
+import { Provider } from "react-redux";
+import { Store } from "../stateUtils/Store";
 
 const appRouter = createBrowserRouter([
   {
@@ -24,9 +26,11 @@ const appRouter = createBrowserRouter([
 ])
 function App() {
   return ( 
+    <Provider store={Store}>
     <RouterProvider router={appRouter}>
       <AppLayout />
     </RouterProvider>
+    </Provider>
   );
 }
 

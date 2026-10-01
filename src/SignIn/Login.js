@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from "react"
 import { CheckValidate } from "../utils/Validate"
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile  } from "firebase/auth";
 import {auth} from "../utils/firebase"
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../stateUtils/UserSlice";
+
 const Login = ()=>{
     const [signIn,setSignIn] = useState(true)
     const [error,setError] = useState(null)
+    const navigate = useNavigate()
     const email = useRef(null)
     const password = useRef(null)
+    const name = useRef(null)
+    const dispatch = useDispatch()
     useEffect(()=>{
         email.current.focus()
     },[])
@@ -21,6 +28,18 @@ const Login = ()=>{
             createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
             .then((userCredential) => {
             const user = userCredential.user;
+            updateProfile(user, {
+            displayName: name.current.value, photoURL: "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
+            }).then(() => {
+            // Profile updated!
+            const {uid,email,displayName,photoURL} = auth.currentUser
+            dispatch(addUser({uid,email,displayName,photoURL}))
+            navigate("/home")
+            }).catch((error) => {
+            // An error occurred
+            setError(error)
+            });
+            navigate("/home")
             })
             .catch((error) => {
             const errorCode = error.code;
@@ -33,6 +52,7 @@ const Login = ()=>{
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
+                navigate("/home")
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -45,7 +65,7 @@ const Login = ()=>{
         <>
         <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fd8ae3c6-340b-490b-9d3c-f8a3df895c45/web/IN-en-20260907-TRIFECTA-perspective_e8f74db6-0559-495d-84fb-a75bca089b27_large.jpg"
         alt="background" className="absolute" />
-        <form onSubmit={(e)=>e.preventDefault()} className=" w-3/12 absolute p-12 my-36 mx-auto left-0 right-0 bg-black text-white opacity-80">
+        <form onSubmit={(e)=>e.stopPropagation()} className=" w-3/12 absolute p-12 my-36 mx-auto left-0 right-0 bg-black text-white opacity-80">
             {signIn ? <h1 className="font-bold text-3xl p-2">SignIn</h1> : <h1 className="font-bold text-3xl p-2">SignUp</h1> }
             {!signIn && <>
             <input className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Name" />
@@ -56,7 +76,7 @@ const Login = ()=>{
             {!signIn &&
             <input className="w-full p-2 my-2 rounded-lg bg-slate-700" placeholder="Re-Enter Password" />}
             <p className="text-red-500">{error}</p>
-            <button onClick={validationCheck} className="w-full p-2 my-2 bg-red-700 rounded-lg">{signIn?"SignIn":"SignUp"}</button>
+            <button type="button" onClick={validationCheck} className="w-full p-2 my-2 bg-red-700 rounded-lg">{signIn?"SignIn":"SignUp"}</button>
             <span>{signIn ?"New User? Then " :"Already Singed up? Then " }<span className="cursor-pointer" onClick={()=>setSignIn(!signIn)}>{signIn ? " SignUp" : " SignIn"}</span></span>
         </form>
         </>
