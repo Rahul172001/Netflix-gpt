@@ -51,8 +51,8 @@ const Login = ()=>{
             signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
             .then((userCredential) => {
                 const user = userCredential.user;
-                const {uid,email,name,photoURL} = user
-                dispatch(addUser({uid,email,name,photoURL}))
+                const {uid,email,displayName,photoURL} = user
+                dispatch(addUser({uid,email,displayName,photoURL}))
                 navigate("/home")
             })
             .catch((error) => {
