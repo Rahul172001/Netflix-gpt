@@ -3,21 +3,26 @@ import { CheckValidate } from "../utils/Validate"
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile  } from "firebase/auth";
 import {auth} from "../utils/firebase"
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../stateUtils/UserSlice";
 
 const Login = ()=>{
     const [signIn,setSignIn] = useState(true)
     const [error,setError] = useState(null)
+    const signedUser = useSelector((store)=>store?.user)
     const navigate = useNavigate()
     const email = useRef(null)
     const password = useRef(null)
     const name = useRef(null)
-    console.log("n",name)
     const dispatch = useDispatch()
     useEffect(()=>{
         email.current.focus()
     },[])
+    useEffect(()=>{
+        if(signedUser){
+            navigate("/home")
+        }
+    },[signedUser])
     const validationCheck = ()=>{
         const message = CheckValidate(email?.current?.value,password?.current?.value)
         setError(message)

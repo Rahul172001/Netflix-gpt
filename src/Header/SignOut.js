@@ -18,8 +18,8 @@ const SignOut = ({onClose})=>{
         });
     }
     return(
-        <div onClick={onClose}>
-            <p>{signedUser?.displayName}</p>
+        <div className="fixed inset-0 z-20" onClick={onClose}>
+            <p onClick={(e)=>e.stopPropagation()}>{signedUser?.displayName}</p>
             <button onClick={handleSignOut}>SignOut</button>
         </div>
     )
