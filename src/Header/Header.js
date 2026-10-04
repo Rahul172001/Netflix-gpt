@@ -1,7 +1,7 @@
 import { useState } from "react"
 import SignOut from "./SignOut"
 import { useSelector } from "react-redux"
-import { logo } from "../utils/image"
+import { logo } from "../utils/url"
 const Header = ()=>{
     const [modal,setModal] = useState(false)
     const user = useSelector((store)=>store?.user)

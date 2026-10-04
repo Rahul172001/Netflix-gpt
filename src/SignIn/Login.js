@@ -5,7 +5,7 @@ import {auth} from "../utils/firebase"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../stateUtils/UserSlice";
-import { userIcon } from "../utils/image";
+import { userIcon } from "../utils/url";
 
 const Login = ()=>{
     const [signIn,setSignIn] = useState(true)
