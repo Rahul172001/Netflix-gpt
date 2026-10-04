@@ -7,7 +7,7 @@ const Header = ()=>{
     const user = useSelector((store)=>store?.user)
 
     return(
-        <div className="absolute top-0 left-0 w-full z-10 bg-gradient-to-b from-black/80 via-black/40 to-transparent flex items-center justify-between px-10 py-4">
+        <div className="absolute top-0 left-0 w-full z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent flex items-center justify-between px-10 py-4">
             <div className="max-w-[150px]">
             <img src={logo} alt="logo" className="w-full" />
             </div>
