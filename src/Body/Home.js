@@ -9,7 +9,7 @@ const Home = ()=>{
     useFechData("https://api.themoviedb.org/3/movie/now_playing")
 
     if(movie === null) return
-    const mainMovie = movie[0]
+    const mainMovie = movie[1]
     console.log(mainMovie)
 
     const {title,overview,id} = mainMovie

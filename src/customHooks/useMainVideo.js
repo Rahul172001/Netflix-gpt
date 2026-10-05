@@ -11,8 +11,8 @@ const useMainVideo = (id)=>{
         const json = await data?.json()
         console.log("video",json)
         const video = json?.results
-        const trailerData = video?.filter((data)=> data?.type === "Trailer")
-        const trailer = trailerData ? trailerData[0] : video[0]
+        const filterdVideo = video?.filter((data)=>data?.type === "Trailer")
+        const trailer = filterdVideo ? filterdVideo[0] : video[0]
         dispatch(movieTrailer(trailer))
     }
     useEffect(()=>{

@@ -7,7 +7,6 @@ const MovieVideo = ({id})=>{
 
     useMainVideo(id)
     
-    if(!trailerVideo) return
     return(
         <div className="w-screen aspect-video overflow-hidden">
         <iframe className="w-full h-full scale-[1.4] origin-center pointer-events-none"
