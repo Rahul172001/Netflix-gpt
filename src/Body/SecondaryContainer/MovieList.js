@@ -6,7 +6,7 @@ const MovieList = ()=>{
     console.log("movies",nowPlayingMovies)
     return(
         <div>
-            <h1>Now Playing</h1>
+            <h1 className="ml-[15px] font-bold text-xl">Now Playing</h1>
             <div className="flex m-2 overflow-x-scroll">{nowPlayingMovies?.map((data)=><MovieCards key={data?.id} movies={data} />)}</div>
         </div>
     )
