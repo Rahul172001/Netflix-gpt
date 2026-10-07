@@ -13,7 +13,7 @@ const useMainVideo = (id)=>{
         const video = json?.results
         const filterdVideo = video?.filter((data)=>data?.type === "Trailer")
         const trailer = filterdVideo ? filterdVideo[0] : video[0]
-        dispatch(movieTrailer(trailer))
+        dispatch(movieTrailer(trailer))        
     }
     useEffect(()=>{
         fetchTrailer()
