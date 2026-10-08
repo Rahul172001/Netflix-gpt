@@ -3,16 +3,15 @@ import MovieTitle from "./MainMovie/MovieTitle"
 import MovieVideo from "./MainMovie/MovieVideo"
 import useFechData from "../customHooks/useFetchData"
 import MovieList from "./SecondaryContainer/MovieList"
-import usePopularMovie from "../customHooks/usePopularMovie"
-import useTopRatedMovie from "../customHooks/useTopRatedMovie"
+import { addNewMovies,addPopularMovies,addTopRatedMovies, addUpComingMovies } from "../stateUtils/MovieSlice"
 
 const Home = ()=>{
     const movie = useSelector((store)=>store?.movie?.newMovie)
 
-    useFechData("https://api.themoviedb.org/3/movie/now_playing")
-    usePopularMovie("https://api.themoviedb.org/3/discover/movie")
-    useTopRatedMovie("https://api.themoviedb.org/3/movie/top_rated")
-
+    useFechData("https://api.themoviedb.org/3/movie/now_playing",addNewMovies)
+    useFechData("https://api.themoviedb.org/3/discover/movie",addPopularMovies)
+    useFechData("https://api.themoviedb.org/3/movie/top_rated",addTopRatedMovies)
+    useFechData("https://api.themoviedb.org/3/movie/upcoming",addUpComingMovies)
     if(movie === null) return
     const mainMovie = movie[0]
     console.log(mainMovie)
