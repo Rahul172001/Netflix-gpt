@@ -3,12 +3,19 @@ import MovieCards from "./MovieCards"
 
 const MovieList = ()=>{
     const nowPlayingMovies = useSelector((store)=>store?.movie?.newMovie)
-    console.log("movies",nowPlayingMovies)
+    const popularMovies = useSelector((store)=>store?.movie?.popularMovie)
+    console.log("popular",popularMovies)
     return(
+        <>
         <div>
             <h1 className="ml-[15px] font-bold text-xl">Now Playing</h1>
             <div className="flex m-2 overflow-x-scroll">{nowPlayingMovies?.map((data)=><MovieCards key={data?.id} movies={data} />)}</div>
         </div>
+        <div>
+            <h1 className="ml-[15px] font-bold text-xl">Popular Movies</h1>
+            <div className="flex m-2 overflow-x-scroll">{popularMovies?.map((data)=><MovieCards key={data?.id} movies={data} />)}</div>
+        </div>
+        </>
     )
 }
 
