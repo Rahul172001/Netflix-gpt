@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { api_options } from "../utils/url"
-import { movieTrailer } from "../stateUtils/MovieSlice"
+import { movieTrailer, selectMainMovie } from "../stateUtils/MovieSlice"
 
 const useMainVideo = ()=>{
     const dispatch = useDispatch()
@@ -15,10 +15,11 @@ const useMainVideo = ()=>{
         const video = json?.results
         if(video?.length > 0){
         const filterdVideo = video?.filter((data)=>data?.type === "Trailer")
-        const trailer = filterdVideo ? filterdVideo[0] : video[0]
+        const trailer = filterdVideo.length > 0 ? filterdVideo[0] : video[0]
         dispatch(movieTrailer(trailer))
-        }
+        dispatch(selectMainMovie(movie))
         return
+        }
         }
     }
     useEffect(()=>{
