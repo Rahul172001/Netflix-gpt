@@ -1,23 +1,31 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { api_options } from "../utils/url"
 import { movieTrailer } from "../stateUtils/MovieSlice"
 
-const useMainVideo = (id)=>{
+const useMainVideo = ()=>{
     const dispatch = useDispatch()
+    const mainMovie = useSelector((store)=>store?.movie?.newMovie)
 
     const fetchTrailer = async()=>{
-        const data = await fetch("https://api.themoviedb.org/3/movie/"+id+"/videos",api_options)
+        for (const movie of mainMovie){
+        const data = await fetch("https://api.themoviedb.org/3/movie/"+movie?.id+"/videos",api_options)
         const json = await data?.json()
         console.log("video",json)
         const video = json?.results
+        if(video?.length > 0){
         const filterdVideo = video?.filter((data)=>data?.type === "Trailer")
         const trailer = filterdVideo ? filterdVideo[0] : video[0]
-        dispatch(movieTrailer(trailer))        
+        dispatch(movieTrailer(trailer))
+        }
+        return
+        }
     }
     useEffect(()=>{
-        fetchTrailer()
-    },[])
+        if(mainMovie !== null){
+            fetchTrailer()
+        }
+    },[mainMovie])
 }
 
 export default useMainVideo

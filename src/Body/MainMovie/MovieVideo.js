@@ -2,10 +2,10 @@ import { useSelector } from "react-redux"
 import useMainVideo from "../../customHooks/useMainVideo"
 
 
-const MovieVideo = ({id})=>{
+const MovieVideo = ()=>{
     const trailerVideo = useSelector((store)=>store?.movie?.mainMovieVideo)
 
-    useMainVideo(id)
+    useMainVideo()
     
     return(
         <div className="w-screen aspect-video overflow-hidden">

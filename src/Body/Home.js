@@ -7,21 +7,17 @@ import { addNewMovies,addPopularMovies,addTopRatedMovies, addUpComingMovies } fr
 
 const Home = ()=>{
     const movie = useSelector((store)=>store?.movie?.newMovie)
-
+    
     useFechData("https://api.themoviedb.org/3/movie/now_playing",addNewMovies)
     useFechData("https://api.themoviedb.org/3/discover/movie",addPopularMovies)
     useFechData("https://api.themoviedb.org/3/movie/top_rated",addTopRatedMovies)
     useFechData("https://api.themoviedb.org/3/movie/upcoming",addUpComingMovies)
     if(movie === null) return
-    const mainMovie = movie[0]
-    console.log(mainMovie)
-
-    const {title,overview,id} = mainMovie
 
     return(
         <>
-        <MovieTitle title={title} overview={overview} />
-        <MovieVideo id={id} />
+        <MovieTitle />
+        <MovieVideo />
         <MovieList />
         </>
     )
