@@ -5,7 +5,7 @@ const MovieTitle = ()=>{
     if (mainMovie === null) return
     const {title,overview} = mainMovie
     return(
-        <div className="w-screen aspect-video absolute bg-gradient-to-r from-black via-black/60 to-transparent text-white z-20 flex-col px-10 pb-[15%] pt-24">
+        <div className="w-screen aspect-video absolute bg-gradient-to-r from-black via-black/60 to-transparent text-white z-20 flex-col px-10 pb-[15%] pt-[35%]">
         <h1 className="font-bold text-4xl md:text-5xl drop-shadow-lg mb-4 max-w-xl">{title}</h1>
         <p className="w-full md:w-5/12 text-sm md:tesxt-base text-gray-200 line-clamp-3 mb-6">{overview}</p>
         <div className="flex gap-3">
