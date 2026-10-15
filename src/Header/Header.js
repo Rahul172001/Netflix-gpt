@@ -1,17 +1,13 @@
 import { useState } from "react"
 import SignOut from "./SignOut"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { logo } from "../utils/url"
-import { useNavigate } from "react-router-dom"
+import { gptStatus } from "../stateUtils/GptSlice"
+
 const Header = ()=>{
     const [modal,setModal] = useState(false)
-    const [gptSearch,setGptSearch] = useState(false)
     const user = useSelector((store)=>store?.user)
-    const navigate = useNavigate()
-    const handleGptSearch = ()=>{
-        setGptSearch(!gptSearch)
-        gptSearch ? navigate("/gptsearch") : navigate("/home")
-    }
+    const dispatch = useDispatch()
 
     return(
         <div className="absolute top-0 left-0 w-full z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent flex items-center justify-between px-10 py-4">
@@ -20,7 +16,7 @@ const Header = ()=>{
             </div>
             <div className="flex gap-2">
             {user && <>
-            <button className="bg-purple-600 rounded-lg text-white mx-2 p-2" onClick={handleGptSearch}>{ gptSearch ?"Movie" :"GPT Search"}</button>
+            <button className="bg-purple-600 rounded-lg text-white mx-2 p-2" onClick={()=>dispatch(gptStatus())}>"Gpt Search"</button>
             <div className="relative flex items-center gap-2 cursor-pointer select-none" onClick={()=>setModal(!modal)}>
             <img className="w-9 h-9 rounded-sm object-cover" src={user?.photoURL} />
             </div>

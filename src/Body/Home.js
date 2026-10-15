@@ -3,10 +3,12 @@ import MovieTitle from "./MainMovie/MovieTitle"
 import MovieVideo from "./MainMovie/MovieVideo"
 import useFechData from "../customHooks/useFetchData"
 import MovieList from "./SecondaryContainer/MovieList"
+import GptSearch from "./GptSearch"
 import { addNewMovies,addPopularMovies,addTopRatedMovies, addUpComingMovies } from "../stateUtils/MovieSlice"
 
 const Home = ()=>{
     const movie = useSelector((store)=>store?.movie?.newMovie)
+    const gpt = useSelector((store)=>store?.gpt?.gpt)
     
     useFechData("https://api.themoviedb.org/3/movie/now_playing",addNewMovies)
     useFechData("https://api.themoviedb.org/3/discover/movie",addPopularMovies)
@@ -15,6 +17,7 @@ const Home = ()=>{
     if(movie === null) return
 
     return(
+         gpt ? <GptSearch /> :
         <>
         <MovieTitle />
         <MovieVideo />
