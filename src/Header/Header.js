@@ -7,6 +7,7 @@ import { gptStatus } from "../stateUtils/GptSlice"
 const Header = ()=>{
     const [modal,setModal] = useState(false)
     const user = useSelector((store)=>store?.user)
+    const gpt = useSelector((store)=>store?.gpt?.gptStatus)
     const dispatch = useDispatch()
 
     return(
@@ -16,7 +17,7 @@ const Header = ()=>{
             </div>
             <div className="flex gap-2">
             {user && <>
-            <button className="bg-purple-600 rounded-lg text-white mx-2 p-2" onClick={()=>dispatch(gptStatus())}>"Gpt Search"</button>
+            <button className="bg-purple-600 rounded-lg text-white mx-2 p-2" onClick={()=>dispatch(gptStatus())}>{gpt ? "Movie" : "Gpt Search"}</button>
             <div className="relative flex items-center gap-2 cursor-pointer select-none" onClick={()=>setModal(!modal)}>
             <img className="w-9 h-9 rounded-sm object-cover" src={user?.photoURL} />
             </div>

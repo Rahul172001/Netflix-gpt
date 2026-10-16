@@ -8,7 +8,7 @@ import { addNewMovies,addPopularMovies,addTopRatedMovies, addUpComingMovies } fr
 
 const Home = ()=>{
     const movie = useSelector((store)=>store?.movie?.newMovie)
-    const gpt = useSelector((store)=>store?.gpt?.gpt)
+    const gpt = useSelector((store)=>store?.gpt?.gptStatus)
     
     useFechData("https://api.themoviedb.org/3/movie/now_playing",addNewMovies)
     useFechData("https://api.themoviedb.org/3/discover/movie",addPopularMovies)
