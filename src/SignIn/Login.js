@@ -5,7 +5,7 @@ import {auth} from "../utils/firebase"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../stateUtils/UserSlice";
-import { userIcon } from "../utils/url";
+import { bg_img, userIcon } from "../utils/url";
 
 const Login = ()=>{
     const [signIn,setSignIn] = useState(true)
@@ -68,7 +68,7 @@ const Login = ()=>{
     }
     return(
         <>
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fd8ae3c6-340b-490b-9d3c-f8a3df895c45/web/IN-en-20260907-TRIFECTA-perspective_e8f74db6-0559-495d-84fb-a75bca089b27_large.jpg"
+        <img src={bg_img}
         alt="background" className="absolute" />
         <form onSubmit={(e)=>e.stopPropagation()} className=" w-3/12 absolute p-12 my-36 mx-auto left-0 right-0 bg-black text-white opacity-80">
             {signIn ? <h1 className="font-bold text-3xl p-2">SignIn</h1> : <h1 className="font-bold text-3xl p-2">SignUp</h1> }

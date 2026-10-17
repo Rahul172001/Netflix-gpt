@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { api_options } from "../utils/url"
 import { useDispatch } from "react-redux"
-import { addNewMovies } from "../stateUtils/MovieSlice"
 
 const useFechData = (api,actionItem)=>{
         const dispatch = useDispatch()

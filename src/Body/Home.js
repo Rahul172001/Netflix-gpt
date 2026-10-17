@@ -3,7 +3,7 @@ import MovieTitle from "./MainMovie/MovieTitle"
 import MovieVideo from "./MainMovie/MovieVideo"
 import useFechData from "../customHooks/useFetchData"
 import MovieList from "./SecondaryContainer/MovieList"
-import GptSearch from "./GptSearch"
+import GptSearch from "../GptSector/GptSearch"
 import { addNewMovies,addPopularMovies,addTopRatedMovies, addUpComingMovies } from "../stateUtils/MovieSlice"
 
 const Home = ()=>{
