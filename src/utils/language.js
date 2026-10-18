@@ -17,3 +17,9 @@ export const language = {
     }
 }
 console.log("lagu",language)
+export const supported_language = [
+    {id:"en",lang:"English"},
+    {id:"tamil", lang:"Tamil"},
+    {id:"hindi",lang:"Hindi"},
+    {id:"spanish",lang:"Spanish"}
+]
