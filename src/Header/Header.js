@@ -12,9 +12,11 @@ const Header = ()=>{
     const gpt = useSelector((store)=>store?.gpt?.gptStatus)
     const dispatch = useDispatch()
     const language = (e)=>{
-        dispatch(changeLanguage(e.target.value))
+        const langData = e.target.value
+        dispatch(changeLanguage(langData))
+        localStorage.setItem("appLanguage",langData)
     }
-    console.log("change",language)
+    const selectedLanguage = useSelector((store)=>store?.language?.lang)
 
 
     return(
@@ -23,8 +25,8 @@ const Header = ()=>{
             <img src={logo} alt="logo" className="w-full" />
             </div>
             <div className="flex gap-2">
-            <select onChange={language}>
-                {supported_language?.map((data)=><option key={data?.id} value={data?.id}>{data?.lang}</option>)}
+            <select className="bg-inherit text-white" value={selectedLanguage} onChange={language}>
+                {supported_language?.map((data)=><option className="bg-black" key={data?.id} value={data?.id}>{data?.lang}</option>)}
             </select>
             {user && <>
             <button className="bg-purple-600 rounded-lg text-white mx-2 p-2" onClick={()=>dispatch(gptStatus())}>{gpt ? "Movie" : "Gpt Search"}</button>

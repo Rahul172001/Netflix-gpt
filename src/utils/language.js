@@ -1,4 +1,4 @@
-export const language = {
+export const languageList = {
     en : {
         searchPlaceholder : "What do you want to watch today?",
         search : "Search"
@@ -16,7 +16,6 @@ export const language = {
         search : "Buscar"
     }
 }
-console.log("lagu",language)
 export const supported_language = [
     {id:"en",lang:"English"},
     {id:"tamil", lang:"Tamil"},
