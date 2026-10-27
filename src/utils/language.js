@@ -18,7 +18,7 @@ export const languageList = {
 }
 export const supported_language = [
     {id:"en",lang:"English"},
-    {id:"tamil", lang:"Tamil"},
-    {id:"hindi",lang:"Hindi"},
-    {id:"spanish",lang:"Spanish"}
+    {id:"tamil", lang:"தமிழ்"},
+    {id:"hindi",lang:"हिंदी"},
+    {id:"spanish",lang:"Española"}
 ]
