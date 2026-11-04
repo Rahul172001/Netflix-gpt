@@ -4,14 +4,17 @@ const GptSlice = createSlice({
     name:"gpt",
     initialState:{
         gptStatus : false,
-        gptResult : null
+        gptMovies:null,
+        gptDataResult : null
     },
     reducers:{
         gptStatus:(state,action)=>{
             state.gptStatus = !state.gptStatus 
         },
         gptResult:(state,action)=>{
-            state.gptResult = action.payload
+            const {movieNames,movieList} = action.payload
+            state.gptDataResult = movieNames
+            state.gptMovies = movieList
         }
     }
 })

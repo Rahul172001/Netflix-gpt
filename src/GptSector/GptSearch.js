@@ -24,10 +24,9 @@ const GptSearch = ()=>{
                         input: searchQuery,
         });
         const aiResult = response.output_text.split(",")
-        console.log("aiResult",aiResult)
         const movieData = aiResult?.map((data)=>movieApi(data))
         const promiseResult = await Promise.all(movieData)
-        dispatch(gptResult(promiseResult))
+        dispatch(gptResult({movieNames:aiResult,movieList:promiseResult}))
         
         //gemini
         // const aiResults = await ai.interactions.create({
