@@ -17,7 +17,7 @@ const GptSearch = ()=>{
     const movieApi = async(movie)=>{
         const data = await fetch("https://api.themoviedb.org/3/search/movie?query="+movie+"&include_adult=false&language=en-US&page=1",api_options)
         const json = await data?.json()
-        return json?.results
+        return json?.results?.[0]
     }
     const handleSearch = async()=>{
         const searchQuery = `Give me top 5 movies of${searchText.current.value} movie name with comma seperated. Only give the movie list of ${searchText.current.value}`
