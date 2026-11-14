@@ -2,12 +2,11 @@ import { useSelector } from "react-redux"
 import MovieCards from "../Body/SecondaryContainer/MovieCards"
 
 const GptResult = ()=>{
-    const gpt = useSelector((store)=>store?.gpt?.gptMovies)
-    const movieName = useSelector((store)=>store?.gpt?.gptDataResult)
+    const {gptMovies,gptDataResult} = useSelector((store)=>store?.gpt)
     return(
          <div className="bg-black">
-            <h2 className="text-white">{movieName?.map((data)=>data)}</h2>
-                {gpt?.map((data)=><MovieCards key={data?.id} movies={data} />)}
+            <h2 className="text-white">{gptDataResult}</h2>
+                {gptMovies?.map((data)=><MovieCards key={data?.id} movies={data} />)}
             </div>
             
     )

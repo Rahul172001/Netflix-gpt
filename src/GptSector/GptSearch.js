@@ -20,7 +20,7 @@ const GptSearch = ()=>{
         return json?.results?.[0]
     }
     const handleSearch = async()=>{
-        const searchQuery = `Give me top 5 movies of${searchText.current.value} movie name with comma seperated. Only give the movie list of ${searchText.current.value}`
+        const searchQuery = `Give me top 5 movies of${searchText.current.value} movie name with comma seperated. Only give the movie list of ${searchText.current.value} not other movie names which are ir relevant to ${searchText.current.value}`
         //groq
         const response = await groq.responses.create({
                         model: "openai/gpt-oss-20b",
