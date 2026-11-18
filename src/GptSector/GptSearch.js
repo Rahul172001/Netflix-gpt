@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useRef, useState } from "react"
 import ai from "../Body/Ai_Utils/ai"
 import groq from "../Body/Ai_Utils/groq"
-import { gptResult } from "../stateUtils/GptSlice"
+import { gptResult, searchBtnStatus } from "../stateUtils/GptSlice"
 import GptResult from "./GptResult"
 
 
 const GptSearch = ()=>{
-    const [btn,setBtn] = useState(false)
     const selectedLanguage = useSelector((store)=>store?.language?.lang)
+    const btn = useSelector((store)=>store?.gpt?.searchBtn)
     const dispatch = useDispatch()
     const searchText = useRef(null)
     // const searchValue = searchText.length > 0
@@ -32,7 +32,7 @@ const GptSearch = ()=>{
         console.log("ai",aiResult)
         console.log("ddd",promiseResult)
         dispatch(gptResult({movieNames:aiResult,movieList:promiseResult}))
-        setBtn(true)
+        dispatch(searchBtnStatus())
         
         //gemini
         // const aiResults = await ai.interactions.create({

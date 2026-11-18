@@ -21,3 +21,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth()
+export const API_Key = process.env.REACT_APP_GeminiAPIKey
+export const groq_API_Key = process.env.REACT_APP_GroqApiKey
